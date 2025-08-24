@@ -66,13 +66,15 @@
         <span class="text-xs ml-2 px-2 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200">Portfolio</span>
       </div>
       <nav class="hidden md:flex items-center gap-4 text-sm">
-        <a href="#apropos" class="hover:text-brand-700">À propos</a>
-        <a href="#projets" class="hover:text-brand-700">Projets</a>
-        <a href="#experience" class="hover:text-brand-700">Expérience</a>
-        <a href="#formation" class="hover:text-brand-700">Formation</a>
-        <a href="#contact" class="hover:text-brand-700">Contact</a>
+        <a id="nav-about" href="#apropos" class="hover:text-brand-700">À propos</a>
+        <a id="nav-projects" href="#projets" class="hover:text-brand-700">Projets</a>
+        <a id="nav-exp" href="#experience" class="hover:text-brand-700">Expérience</a>
+        <a id="nav-edu" href="#formation" class="hover:text-brand-700">Formation</a>
+        <a id="nav-contact" href="#contact" class="hover:text-brand-700">Contact</a>
       </nav>
       <div class="flex items-center gap-2">
+        <!-- Bouton langue -->
+        <button id="lang-toggle" class="btn btn-secondary text-sm" aria-label="Switch language">EN</button>
         <a href="https://github.com/MohamedELamrani14" target="_blank" class="btn btn-secondary" aria-label="GitHub">
           <i data-lucide="github" class="w-5 h-5"></i>
         </a>
@@ -85,25 +87,25 @@
     <div class="grid md:grid-cols-5 gap-6 items-center">
       <div class="md:col-span-3">
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-          Data Scientist <span class="text-brand-700">créatif</span>
+          <span id="hero-role">Data Scientist</span> <span class="text-brand-700" id="hero-creative">créatif</span>
         </h1>
-        <p class="mt-4 text-base-600 leading-relaxed">
+        <p id="hero-summary" class="mt-4 text-base-600 leading-relaxed">
           Data Scientist passionné par l’exploration, le traitement et la manipulation des données.
           IA (ML/DL), optimisation de modèles, LLMs, vision et NLP.
         </p>
         <div class="mt-6 flex flex-wrap items-center gap-3">
           <span class="px-3 py-1 rounded-full bg-white/70 border border-base-200 inline-flex items-center gap-1 text-sm">
-            <i data-lucide="map-pin" class="w-4 h-4"></i> Paris, France
+            <i data-lucide="map-pin" class="w-4 h-4"></i> <span id="hero-location">Paris, France</span>
           </span>
-          <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-800 border border-brand-200 text-sm">LLM • Vision • NLP • Optimisation</span>
-          <span class="px-3 py-1 rounded-full bg-accent-50 text-accent-800 border border-accent-200 text-sm">Open-source friendly</span>
+          <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-800 border border-brand-200 text-sm" id="hero-pill-1">LLM • Vision • NLP • Optimisation</span>
+          <span class="px-3 py-1 rounded-full bg-accent-50 text-accent-800 border border-accent-200 text-sm" id="hero-pill-2">Open-source friendly</span>
         </div>
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="#projets" class="btn btn-primary inline-flex items-center">
-            <i data-lucide="filter" class="w-4 h-4 mr-2"></i> Voir les projets
+            <i data-lucide="filter" class="w-4 h-4 mr-2"></i> <span id="btn-view-projects">Voir les projets</span>
           </a>
-          <a href="/public/cv.pdf" download class="btn btn-secondary inline-flex items-center">
-            <i data-lucide="download" class="w-4 h-4 mr-2"></i> Télécharger le CV
+          <a href="/cv.pdf" download class="btn btn-secondary inline-flex items-center">
+            <i data-lucide="download" class="w-4 h-4 mr-2"></i> <span id="btn-download-cv">Télécharger le CV</span>
           </a>
           <a href="https://www.linkedin.com/in/m-elamrani/" target="_blank" class="btn btn-secondary inline-flex items-center">
             <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> LinkedIn
@@ -116,9 +118,9 @@
         <div class="card overflow-hidden">
           <div class="p-5 border-b">
             <div class="font-semibold flex items-center gap-2">
-              <i data-lucide="brain" class="w-5 h-5 text-brand-700"></i> Compétences (aperçu)
+              <i data-lucide="brain" class="w-5 h-5 text-brand-700"></i> <span id="skills-title">Compétences (aperçu)</span>
             </div>
-            <div class="text-sm text-base-500">Force relative (1–10)</div>
+            <div class="text-sm text-base-500" id="skills-subtitle">Force relative (1–10)</div>
           </div>
           <div class="p-5 h-64">
             <canvas id="radar"></canvas>
@@ -132,8 +134,8 @@
   <section class="max-w-6xl mx-auto px-4 pb-12" id="projets">
     <div class="flex items-end justify-between gap-4 mb-4">
       <div>
-        <h2 class="text-2xl md:text-3xl font-bold">Projets sélectionnés</h2>
-        <p class="text-base-600">Cliquez sur une carte pour voir les détails.</p>
+        <h2 class="text-2xl md:text-3xl font-bold" id="projects-heading">Projets sélectionnés</h2>
+        <p class="text-base-600" id="projects-subtitle">Cliquez sur une carte pour voir les détails.</p>
       </div>
       <div class="w-full md:w-96">
         <input id="search" placeholder="Rechercher…" class="w-full px-3 py-2 rounded-xl border bg-white"/>
@@ -147,22 +149,22 @@
   </section>
 
   <!-- Modale projets -->
-  <div id="modal" class="hidden-modal">
+  <div id="modal" class="hidden-modal" aria-hidden="true">
     <div class="modal-backdrop" id="modal-backdrop">
-      <div class="modal">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="p-5 border-b flex items-center justify-between">
           <h3 id="modal-title" class="text-xl font-semibold pr-6"></h3>
-          <button id="modal-close" class="btn text-sm">Fermer</button>
+          <button id="modal-close" class="btn text-sm"><span id="modal-close-text">Fermer</span></button>
         </div>
         <div class="p-5">
           <ul id="modal-list" class="list-disc pl-5 space-y-2 text-sm text-base-800"></ul>
           <div id="modal-tags" class="mt-4 flex flex-wrap gap-2"></div>
         </div>
         <div class="p-4 border-t flex items-center justify-between">
-          <span class="text-xs text-base-500">← / → pour naviguer • Esc pour fermer</span>
+          <span class="text-xs text-base-500" id="modal-hint">← / → pour naviguer • Esc pour fermer</span>
           <div class="flex gap-2">
-            <button id="modal-prev" class="btn text-sm">← Préc.</button>
-            <button id="modal-next" class="btn text-sm">Suiv. →</button>
+            <button id="modal-prev" class="btn text-sm">← <span id="modal-prev-text">Préc.</span></button>
+            <button id="modal-next" class="btn text-sm"><span id="modal-next-text">Suiv.</span> →</button>
           </div>
         </div>
       </div>
@@ -171,7 +173,7 @@
 
   <!-- Expérience -->
   <section class="max-w-6xl mx-auto px-4 pb-12" id="experience">
-    <h2 class="text-2xl md:text-3xl font-bold mb-6">Expérience</h2>
+    <h2 class="text-2xl md:text-3xl font-bold mb-6" id="exp-heading">Expérience</h2>
     <div class="relative pl-6">
       <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-500/70 to-transparent rounded-full"></div>
       <div class="space-y-6" id="exp-list"></div>
@@ -180,7 +182,7 @@
 
   <!-- Formation (timeline) -->
   <section class="max-w-6xl mx-auto px-4 pb-12" id="formation">
-    <h2 class="text-2xl md:text-3xl font-bold mb-6">Formation — Parcours académique</h2>
+    <h2 class="text-2xl md:text-3xl font-bold mb-6" id="edu-heading">Formation — Parcours académique</h2>
     <div class="relative w-full overflow-x-auto pb-10">
       <div class="flex items-start space-x-12 relative min-w-[720px]">
         <div class="absolute top-5 left-0 right-0 h-1 bg-gradient-to-r from-brand-300 via-brand-500 to-accent-400 rounded-full"></div>
@@ -193,14 +195,12 @@
   <section class="max-w-6xl mx-auto px-4 pb-20" id="contact">
     <div class="card">
       <div class="p-5 border-b">
-        <div class="text-xl font-semibold">Entrons en contact</div>
-        <div class="text-sm text-base-600">
-          Ouvert à un CDI / une thèse CIFRE et aux collaborations sur des projets IA / Data.
-        </div>
+        <div class="text-xl font-semibold" id="contact-heading">Entrons en contact</div>
+        <div class="text-sm text-base-600" id="contact-sub">Ouvert à un CDI / une thèse CIFRE et aux collaborations sur des projets IA / Data.</div>
       </div>
       <div class="p-5 flex flex-wrap items-center gap-3">
         <a href="mailto:elamrani.mohamed.0011@gmail.com" class="btn btn-primary inline-flex items-center">
-          <i data-lucide="mail" class="w-4 h-4 mr-2"></i> elamrani.mohamed.0011@gmail.com
+          <i data-lucide="mail" class="w-4 h-4 mr-2"></i> <span>elamrani.mohamed.0011@gmail.com</span>
         </a>
         <a href="https://github.com/MohamedELamrani14" target="_blank" class="btn btn-secondary inline-flex items-center">
           <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
@@ -213,156 +213,241 @@
     </div>
   </section>
 
-  <!-- ======= Données & logique ======= -->
+  <!-- ======= Données & logique (FR/EN) ======= -->
   <script>
-    // Données
-    const EXPERIENCE = [
-      { title:"Data Scientist (Stage)", company:"LIPN – LaMSN", location:"Paris, France", period:"Avril 2025 – Septembre 2025",
-        logo:"/public/logos/lipn.png",
-        bullets:["Compression de CNN 3D pour imagerie médicale (nnU-Net).","Décomposition de Tucker pour réduire paramètres & latence.","Éval. sur Dice score, latence et mémoire; déploiement Docker."],
-        stack:["Python","PyTorch","nnU-Net","Tensor Decomposition","Linux","Docker"]},
-      { title:"Data Scientist (Stage)", company:"CodySoft", location:"Paris, France", period:"Juin 2024 – Septembre 2024",
-        logo:"/public/logos/codysoft.png",
-        bullets:["LLM Q/R & résumé automatique de rapports académiques.","Collecte, nettoyage, annotation de corpus et comparaison de modèles."],
-        stack:["Python","LLM","RAG","Fine-tuning"]},
-      { title:"Data Scientist (Stage)", company:"Mondiale Solution Services (M2S)", location:"Casablanca, Maroc", period:"Juillet 2023 – Octobre 2023",
-        logo:"/public/logos/m2s.png",
-        bullets:["Détection de dommages véhicules (vision).","Préparation de données, EDA, entraînement & évaluation."],
-        stack:["Python","YOLO","Roboflow"]},
-    ];
+    // --- Dictionnaire UI ---
+    const UI = {
+      fr: {
+        nav: { about:"À propos", projects:"Projets", exp:"Expérience", edu:"Formation", contact:"Contact" },
+        hero: {
+          role:"Data Scientist", creative:"créatif",
+          summary:"Data Scientist passionné par l’exploration, le traitement et la manipulation des données. IA (ML/DL), optimisation de modèles, LLMs, vision et NLP.",
+          location:"Paris, France", pill1:"LLM • Vision • NLP • Optimisation", pill2:"Open-source friendly",
+          viewProjects:"Voir les projets", downloadCV:"Télécharger le CV"
+        },
+        skills: { title:"Compétences (aperçu)", subtitle:"Force relative (1–10)" },
+        radar: { labels:["ML","DL","NLP","Vision","Ing.\nDonnées","Viz"], tooltipTitleReplace:true, tooltipHint:"← / → pour naviguer • Esc pour fermer", level:"Niveau" },
+        projects: { heading:"Projets sélectionnés", subtitle:"Cliquez sur une carte pour voir les détails.", searchPH:"Rechercher…", allTag:"Tous", modal:{ close:"Fermer", prev:"Préc.", next:"Suiv." } },
+        exp: { heading:"Expérience", stack:"Stack" },
+        edu: { heading:"Formation — Parcours académique" },
+        contact: { heading:"Entrons en contact", sub:"Ouvert à un CDI / une thèse CIFRE et aux collaborations sur des projets IA / Data." },
+        langBtn:"EN"
+      },
+      en: {
+        nav: { about:"About", projects:"Projects", exp:"Experience", edu:"Education", contact:"Contact" },
+        hero: {
+          role:"Data Scientist", creative:"creative",
+          summary:"Data Scientist passionate about exploring, processing and shaping data. AI (ML/DL), model optimization, LLMs, vision and NLP.",
+          location:"Paris, France", pill1:"LLM • Vision • NLP • Optimization", pill2:"Open-source friendly",
+          viewProjects:"View projects", downloadCV:"Download CV"
+        },
+        skills: { title:"Skills (overview)", subtitle:"Relative strength (1–10)" },
+        radar: { labels:["ML","DL","NLP","Vision","Data\nEng.","Viz"], tooltipTitleReplace:true, tooltipHint:"Use ←/→ to navigate • Esc to close", level:"Level" },
+        projects: { heading:"Selected Projects", subtitle:"Click a card to see details.", searchPH:"Search…", allTag:"All", modal:{ close:"Close", prev:"Prev", next:"Next" } },
+        exp: { heading:"Experience", stack:"Stack" },
+        edu: { heading:"Education — Academic Path" },
+        contact: { heading:"Get in touch", sub:"Open to a full-time role / CIFRE PhD and collaborations on AI / Data projects." },
+        langBtn:"FR"
+      }
+    };
 
-    const EDUCATION = [
-      { school:"USPN", degree:"Master2 Exploration Informatique des Données et Décisionnel (EID2)", period:"2024 – 2025", location:"Paris, France" },
-      { school:"FSDM", degree:"Master Web Intelligence et Science des Données (WISD)", period:"2023 – 2025", location:"Fès, Maroc" },
-      { school:"FPT", degree:"Licence Sciences Mathématiques Informatique (SMI) Prc : Génie Informatique", period:"2022 – 2023", location:"Taza, Maroc" },
-    ];
+    // --- Données bilingues ---
+    const DATA = {
+      fr: {
+        EXPERIENCE: [
+          { title:"Data Scientist (Stage)", company:"LIPN – LaMSN", location:"Paris, France", period:"Avril 2025 – Septembre 2025",
+            logo:"/logos/lipn.png",
+            bullets:["Compression de CNN 3D pour imagerie médicale (nnU-Net).","Décomposition de Tucker pour réduire paramètres & latence.","Évaluation sur Dice score, latence et mémoire ; déploiement Docker."],
+            stack:["Python","PyTorch","nnU-Net","Tensor Decomposition","Linux","Docker"]},
+          { title:"Data Scientist (Stage)", company:"CodySoft", location:"Paris, France", period:"Juin 2024 – Septembre 2024",
+            logo:"/logos/codysoft.png",
+            bullets:["LLM Q/R & résumé automatique de rapports académiques.","Collecte, nettoyage, annotation de corpus et comparaison de modèles."],
+            stack:["Python","LLM","RAG","Fine-tuning"]},
+          { title:"Data Scientist (Stage)", company:"Mondiale Solution Services (M2S)", location:"Casablanca, Maroc", period:"Juillet 2023 – Octobre 2023",
+            logo:"/logos/m2s.png",
+            bullets:["Détection de dommages véhicules (vision).","Préparation de données, EDA, entraînement & évaluation."],
+            stack:["Python","YOLO","Roboflow"]},
+        ],
+        EDUCATION: [
+          { school:"USPN", degree:"Master2 Exploration Informatique des Données et Décisionnel (EID2)", period:"2024 – 2025", location:"Paris, France" },
+          { school:"FSDM", degree:"Master Web Intelligence et Science des Données (WISD)", period:"2023 – 2025", location:"Fès, Maroc" },
+          { school:"FPT", degree:"Licence Sciences Mathématiques Informatique (SMI) Parcours : Génie Informatique", period:"2022 – 2023", location:"Taza, Maroc" },
+        ],
+        PROJECTS: [
+          { title:"Développement d'un Modèle de Génération de Légendes pour Images avec Encodeur VIT et Décodeur LLM",
+            tags:["Vision","NLP","VIT","GPT-2","LLM"],
+            bullets:[
+              "Conception et implémentation d'un modèle avancé pour la description automatique d'images",
+              "Combinaison d’un encodeur Vision Transformer (VIT) et d’un décodeur GPT-2",
+              "Visualisation et évaluation du modèle"
+            ]},
+          { title:"Détection de textes arabes générés par les LLMs à l’aide du modèle AraBERT",
+            tags:["NLP","BERT","Arabe","LLM"],
+            bullets:[
+              "Collection, analyse et prétraitement des données brutes",
+              "Visualisation et embeddings avec la version arabe de BERT",
+              "Évaluation de la performance du modèle"
+            ]},
+          { title:"Segmentation d'instance des joueurs par YOLOv5 avec le Framework Roboflow",
+            tags:["Vision","YOLOv5","Roboflow","Sport"],
+            bullets:[
+              "Modèle YOLOv5 pour la segmentation d’instance dans des vidéos de football",
+              "Prétraitement des données et optimisation via Roboflow"
+            ]},
+          { title:"Construire et développer un nouvel Algorithme d’optimisation des paramètres du réseau neuronal",
+            tags:["Recherche","Optimisation","Deep Learning"],
+            bullets:[
+              "Projet de recherche autour de l’optimiseur Horse Herd",
+              "Adaptation pour l’optimisation des poids des modèles neuronaux",
+              "Stratégie de recherche d’hyper-paramètres"
+            ]},
+          { title:"Création d’une Carte Interactive de Paris avec QGIS et Données OpenStreetMap",
+            tags:["Géodata","QGIS","OpenStreetMap","Carto"],
+            bullets:[
+              "Extraction et préparation (écoles, hôpitaux, cafés) avec QuickOSM",
+              "Stylisation et visualisation dans QGIS",
+              "Export web interactif via qgis2web"
+            ]},
+        ]
+      },
+      en: {
+        EXPERIENCE: [
+          { title:"Data Scientist (Intern)", company:"LIPN – LaMSN", location:"Paris, France", period:"April 2025 – September 2025",
+            logo:"/logos/lipn.png",
+            bullets:["3D CNN compression for medical imaging (nnU-Net).","Tucker decomposition to reduce parameters & latency.","Evaluation on Dice score, latency & memory; Dockerized deployment."],
+            stack:["Python","PyTorch","nnU-Net","Tensor Decomposition","Linux","Docker"]},
+          { title:"Data Scientist (Intern)", company:"CodySoft", location:"Paris, France", period:"June 2024 – September 2024",
+            logo:"/logos/codysoft.png",
+            bullets:["LLM Q&A and automatic summarization for academic reports.","Corpus collection, cleaning, annotation and model comparison."],
+            stack:["Python","LLM","RAG","Fine-tuning"]},
+          { title:"Data Scientist (Intern)", company:"Mondiale Solution Services (M2S)", location:"Casablanca, Morocco", period:"July 2023 – October 2023",
+            logo:"/logos/m2s.png",
+            bullets:["Vehicle damage detection (computer vision).","Data prep, EDA, training & evaluation."],
+            stack:["Python","YOLO","Roboflow"]},
+        ],
+        EDUCATION: [
+          { school:"USPN", degree:"MSc 2 Data Exploration & Decision (EID2)", period:"2024 – 2025", location:"Paris, France" },
+          { school:"FSDM", degree:"MSc Web Intelligence & Data Science (WISD)", period:"2023 – 2025", location:"Fès, Morocco" },
+          { school:"FPT", degree:"BSc Mathematics & Computer Science – Software Engineering track", period:"2022 – 2023", location:"Taza, Morocco" },
+        ],
+        PROJECTS: [
+          { title:"Image Captioning with VIT Encoder & LLM Decoder",
+            tags:["Vision","NLP","VIT","GPT-2","LLM"],
+            bullets:[
+              "Designed and implemented an advanced image captioning model",
+              "Combined Vision Transformer (VIT) encoder with a GPT-2 decoder",
+              "Model visualization and evaluation"
+            ]},
+          { title:"Detecting Arabic LLM-Generated Text with AraBERT",
+            tags:["NLP","BERT","Arabic","LLM"],
+            bullets:[
+              "Data collection, analysis, and preprocessing",
+              "Embeddings and visualization with Arabic BERT",
+              "Model performance evaluation"
+            ]},
+          { title:"Player Instance Segmentation using YOLOv5 with Roboflow",
+            tags:["Vision","YOLOv5","Roboflow","Sports"],
+            bullets:[
+              "YOLOv5 model for instance segmentation in football videos",
+              "Data preprocessing and optimization via Roboflow"
+            ]},
+          { title:"New Optimization Algorithm for Neural Network Parameters",
+            tags:["Research","Optimization","Deep Learning"],
+            bullets:[
+              "Research project on the Horse Herd optimizer",
+              "Adapted for optimizing neural network weights",
+              "Hyper-parameter search strategy"
+            ]},
+          { title:"Interactive Paris Map with QGIS & OpenStreetMap",
+            tags:["Geo-data","QGIS","OpenStreetMap","Cartography"],
+            bullets:[
+              "Extraction and preparation (schools, hospitals, cafés) using QuickOSM",
+              "Styling and visualization in QGIS",
+              "Interactive web export via qgis2web"
+            ]},
+        ]
+      }
+    };
 
-    const PROJECTS = [
-      
-      { title:"Développement d'un Modèle de Génération de Légendes pour Images avec Encodeur VIT et Décodeur LLM",
-        tags:["Vision","NLP","VIT","GPT-2","LLM"],
-        bullets:[
-          "Conception et implémentation d'un modèle avancé pour la description automatique d'images",
-          "Combinaison d’un encodeur Vision Transformer (VIT) et d’un décodeur de Modèle de Langage (GPT-2)",
-          "Visualisation et évaluation du modèle"
-        ]},
-      { title:"Détection de textes arabes générés par les LLMs à l’aide du modèle AraBERT",
-        tags:["NLP","BERT","Arabe","LLM"],
-        bullets:[
-          "Collection, analyse et prétraitement des données brutes",
-          "Visualisation et application de l’embedding via la version arabe de BERT",
-          "Évaluation de la performance du modèle"
-        ]},
-      { title:"Segmentation d'instance des joueurs par YOLOv5 avec le Framework Roboflow",
-        tags:["Vision","YOLOv5","Roboflow","Sport"],
-        bullets:[
-          "Développement et entraînement d'un modèle YOLOv5 pour la segmentation d’instance dans des vidéos de matchs de football",
-          "Utilisation de Roboflow pour prétraiter les données et optimiser les performances"
-        ]},
-      { title:"Construire et développer un nouvel Algorithme d’optimisation des paramètres du réseau neuronal",
-        tags:["Recherche","Optimisation","Deep Learning"],
-        bullets:[
-          "Projet de recherche autour de l’optimiseur Horse Herd",
-          "Étude et adaptation de l’optimiseur pour l’optimisation des poids des modèles neuronaux",
-          "Mise en place d’une stratégie de recherche des hyper-paramètres avec Horse Herd"
-        ]},
-        { title:"Création d’une Carte Interactive de Paris avec QGIS et Données OpenStreetMap",
-        tags:["Géodata","QGIS","OpenStreetMap","Carto"],
-        bullets:[
-          "Extraction, nettoyage et préparation des données (écoles, hôpitaux, cafés) avec QuickOSM",
-          "Visualisation et stylisation des données dans QGIS",
-          "Export d’une carte web interactive avec le plugin qgis2web"
-        ]},
-    ];
-
-    // Icônes
+    // Icônes (première passe)
     lucide.createIcons();
 
     // Année
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ===== Radar : libellés mieux placés + tooltip niveau au survol =====
-  const radarCanvas = document.getElementById('radar');
-  radarCanvas.style.cursor = 'crosshair'; // curseur "précision" sur le radar
+    // Langue courante
+    let LANG = 'fr';
 
-  const RADAR_LABELS = [
-    "ML",
-    "DL",
-    "NLP",
-    "Vision",
-    "Data\nEng.", // libellé sur 2 lignes -> meilleur placement
-    "Viz"
-  ];
+    // ----- Radar (fonction de rendu car labels changent avec la langue) -----
+    let radarChart;
+    function renderRadar(){
+      const radarCanvas = document.getElementById('radar');
+      radarCanvas.style.cursor = 'crosshair';
+      if (radarChart) radarChart.destroy();
 
-  const radarChart = new Chart(radarCanvas, {
-    type: 'radar',
-    data: {
-      labels: RADAR_LABELS,
-      datasets: [{
-        label: "Niveau",
-        data: [9, 8, 8, 7, 6, 7],
-        fill: true,
-        backgroundColor: "rgba(6,182,212,0.15)", // brand-500 transparent
-        borderColor: "#06b6d4",
-        borderWidth: 2,
-        pointBackgroundColor: "#06b6d4",
-        pointBorderColor: "#06b6d4",
-        pointHoverBackgroundColor: "#0e7490",
-        pointHoverBorderColor: "#0e7490",
-        pointRadius: 3,
-        pointHoverRadius: 6,
-        pointHitRadius: 18 // zone de clic/hover élargie
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { top: 10, right: 12, bottom: 10, left: 12 } },
-      interaction: {
-        mode: 'nearest',
-        intersect: false // affiche le tooltip même si on n'est pas pile sur un point
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          enabled: true,
-          callbacks: {
-            // Affiche "Niveau : X/10"
-            label: (ctx) => `Niveau : ${ctx.parsed.r}/10`,
-            title: (items) => items[0]?.label?.replace('\n', ' ') || ''
+      const L = UI[LANG].radar.labels;
+      radarChart = new Chart(radarCanvas, {
+        type: 'radar',
+        data: {
+          labels: L,
+          datasets: [{
+            label: UI[LANG].radar.level || "Niveau",
+            data: [9,8,8,7,6,7],
+            fill: true,
+            backgroundColor: "rgba(6,182,212,0.15)",
+            borderColor: "#06b6d4",
+            borderWidth: 2,
+            pointBackgroundColor: "#06b6d4",
+            pointBorderColor: "#06b6d4",
+            pointHoverBackgroundColor: "#0e7490",
+            pointHoverBorderColor: "#0e7490",
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            pointHitRadius: 18
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10, right: 12, bottom: 10, left: 12 } },
+          interaction: { mode: 'nearest', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: (ctx) => `${UI[LANG].radar.level || "Niveau"} : ${ctx.parsed.r}/10`,
+                title: (items) => (items[0]?.label || '').replace('\n',' ')
+              }
+            }
+          },
+          scales: {
+            r: {
+              suggestedMin: 0, suggestedMax: 10,
+              ticks: { stepSize: 2, showLabelBackdrop: false },
+              grid: { color: "rgba(2,132,199,0.15)" },
+              angleLines: { color: "rgba(2,132,199,0.20)" },
+              pointLabels: { display: true, padding: 18, callback: (lbl)=>lbl }
+            }
           }
         }
-      },
-      scales: {
-        r: {
-          suggestedMin: 0,
-          suggestedMax: 10,
-          ticks: { stepSize: 2, showLabelBackdrop: false },
-          grid: { color: "rgba(2,132,199,0.15)" },
-          angleLines: { color: "rgba(2,132,199,0.20)" },
-          pointLabels: {
-            display: true,
-            padding: 18,            // espace autour des libellés -> meilleur placement
-            // Optionnel : uniformiser la casse / abréger si besoin
-            callback: (label) => label
-          }
-        }
-      }
+      });
     }
-  });
 
-    // -------- Projets (colonne + filtre + modale) --------
+    // ----- Rendu des sections dynamiques (Projets / Exp / Edu) -----
     const search = document.getElementById('search');
     const col = document.getElementById('projects-col');
     const tagBar = document.getElementById('tag-bar');
     let activeTag = "Tous";
     let openIndex = null;
 
-    const allTags = Array.from(new Set(["Tous", ...PROJECTS.flatMap(p=>p.tags)]));
+    let VIEW_LIST = []; // liste filtrée courante pour la modale
 
     function renderTags(){
+      const ALL = [UI[LANG].projects.allTag, ...Array.from(new Set(DATA[LANG].PROJECTS.flatMap(p=>p.tags)))];
+      if (!ALL.includes(activeTag)) activeTag = UI[LANG].projects.allTag;
       tagBar.innerHTML = '';
-      allTags.forEach(t=>{
+      ALL.forEach(t=>{
         const b = document.createElement('button');
         b.className = `px-3 py-1.5 rounded-full border text-sm ${activeTag===t?'bg-brand-600 text-white border-brand-600':'bg-white border-base-200 hover:bg-base-100'}`;
         b.textContent = t;
@@ -373,12 +458,13 @@
 
     function renderProjects(){
       const q = (search.value||'').toLowerCase();
-      const list = PROJECTS.filter(p=>{
+      const list = DATA[LANG].PROJECTS.filter(p=>{
         const hay = (p.title+' '+p.tags.join(' ')+' '+p.bullets.join(' ')).toLowerCase();
         const okText = hay.includes(q);
-        const okTag = activeTag==='Tous' || p.tags.includes(activeTag);
+        const okTag = activeTag===UI[LANG].projects.allTag || p.tags.includes(activeTag);
         return okText && okTag;
       });
+      VIEW_LIST = list;
 
       col.innerHTML = '';
       list.forEach((p, i)=>{
@@ -386,21 +472,19 @@
         btn.type = 'button';
         btn.className = "text-left w-full group overflow-hidden card hover:shadow-xl transition hover:-translate-y-0.5";
         btn.innerHTML = `
-          <div class="p-5 border-b">
-            <div class="text-lg font-semibold leading-tight">${p.title}</div>
-          </div>
+          <div class="p-5 border-b"><div class="text-lg font-semibold leading-tight">${p.title}</div></div>
           <div class="p-5">
-            ${(p.bullets.map(b=>`<li class="list-disc pl-5 text-sm text-base-700">${b}</li>`).join(''))}
+            ${p.bullets.map(b=>`<li class="list-disc pl-5 text-sm text-base-700">${b}</li>`).join('')}
           </div>
           <div class="px-5 pb-5 flex flex-wrap gap-2">
             ${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}
           </div>`;
-        btn.onclick = ()=>openModal(i, list);
+        btn.onclick = ()=>openModal(i);
         col.appendChild(btn);
       });
     }
 
-    // Modale
+    // ----- Modale -----
     const modal = document.getElementById('modal');
     const modalBackdrop = document.getElementById('modal-backdrop');
     const modalTitle = document.getElementById('modal-title');
@@ -410,18 +494,30 @@
     const btnNext = document.getElementById('modal-next');
     const btnClose = document.getElementById('modal-close');
 
-    let currentList = [];
+    function setModalText(){
+      document.getElementById('modal-close-text').textContent = UI[LANG].projects.modal.close;
+      document.getElementById('modal-prev-text').textContent  = UI[LANG].projects.modal.prev;
+      document.getElementById('modal-next-text').textContent  = UI[LANG].projects.modal.next;
+      document.getElementById('modal-hint').textContent       = UI[LANG].radar.tooltipHint;
+    }
 
-    function openModal(i, list){ currentList=list; openIndex=i; setModalContent(); modal.classList.remove('hidden-modal'); }
-    function closeModal(){ modal.classList.add('hidden-modal'); openIndex=null; }
+    function openModal(i){
+      openIndex = i;
+      setModalContent();
+      modal.classList.remove('hidden-modal');
+    }
+    function closeModal(){
+      modal.classList.add('hidden-modal');
+      openIndex = null;
+    }
     function setModalContent(){
-      const p = currentList[openIndex]; if(!p) return;
+      const p = VIEW_LIST[openIndex]; if(!p) return;
       modalTitle.textContent = p.title;
       modalList.innerHTML = p.bullets.map(b=>`<li>${b}</li>`).join('');
       modalTags.innerHTML = p.tags.map(t=>`<span class="chip">${t}</span>`).join('');
     }
-    btnPrev.onclick = ()=>{ openIndex = (openIndex - 1 + currentList.length) % currentList.length; setModalContent(); };
-    btnNext.onclick = ()=>{ openIndex = (openIndex + 1) % currentList.length; setModalContent(); };
+    btnPrev.onclick = ()=>{ openIndex = (openIndex - 1 + VIEW_LIST.length) % VIEW_LIST.length; setModalContent(); };
+    btnNext.onclick = ()=>{ openIndex = (openIndex + 1) % VIEW_LIST.length; setModalContent(); };
     btnClose.onclick = closeModal;
     modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeModal(); };
     document.addEventListener('keydown', (e)=>{
@@ -432,53 +528,118 @@
     });
 
     search.addEventListener('input', renderProjects);
-    renderTags(); renderProjects();
 
-    // -------- Expérience --------
+    // ----- Expérience -----
     const expList = document.getElementById('exp-list');
-    EXPERIENCE.forEach(e=>{
-      const card = document.createElement('div');
-      card.className = "card p-5";
-      card.innerHTML = `
-        <div class="flex items-start gap-4">
-          ${e.logo?`<img src="${e.logo}" alt="${e.company} logo" class="w-12 h-12 object-contain rounded-md border p-1">`:''}
-          <div class="flex-1">
-            <div class="flex flex-wrap items-center gap-2 text-sm mb-1">
-              <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
-                <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>${e.period}
-              </span>
-              <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>${e.location}
-              </span>
+    function renderExperience(){
+      expList.innerHTML = '';
+      DATA[LANG].EXPERIENCE.forEach(e=>{
+        const card = document.createElement('div');
+        card.className = "card p-5";
+        card.innerHTML = `
+          <div class="flex items-start gap-4">
+            ${e.logo?`<img src="${e.logo}" alt="${e.company} logo" class="w-12 h-12 object-contain rounded-md border p-1">`:''}
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 text-sm mb-1">
+                <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
+                  <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>${e.period}
+                </span>
+                <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>${e.location}
+                </span>
+              </div>
+              <div class="text-xl font-semibold">${e.title} — ${e.company}</div>
+              <div class="text-sm text-base-600 mt-0.5">${UI[LANG].exp.stack} : ${e.stack.join(" • ")}</div>
+              <ul class="list-disc pl-5 mt-3 space-y-1 text-sm">
+                ${e.bullets.map(b=>`<li>${b}</li>`).join('')}
+              </ul>
             </div>
-            <div class="text-xl font-semibold">${e.title} — ${e.company}</div>
-            <div class="text-sm text-base-600 mt-0.5">Stack : ${e.stack.join(" • ")}</div>
-            <ul class="list-disc pl-5 mt-3 space-y-1 text-sm">
-              ${e.bullets.map(b=>`<li>${b}</li>`).join('')}
-            </ul>
-          </div>
-        </div>`;
-      expList.appendChild(card);
-    });
-    lucide.createIcons();
+          </div>`;
+        expList.appendChild(card);
+      });
+      lucide.createIcons();
+    }
 
-    // -------- Formation timeline --------
+    // ----- Formation (timeline) -----
     const eduLine = document.getElementById('edu-line');
-    EDUCATION.forEach((ed)=>{
-      const wrap = document.createElement('div');
-      wrap.className = "relative flex flex-col items-center";
-      wrap.innerHTML = `
-        <div class="w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md relative z-10"></div>
-        <div class="mt-6 px-5 py-3 bg-white rounded-xl shadow-md border w-72 text-center hover:shadow-lg transition">
-          <div class="text-sm text-brand-700 font-semibold">
-            <i data-lucide="school" class="w-3.5 h-3.5 inline mr-1"></i>${ed.period}
-          </div>
-          <div class="font-bold text-base mt-1">${ed.degree}</div>
-          <div class="text-sm text-base-600 mt-1">${ed.school} • ${ed.location}</div>
-        </div>`;
-      eduLine.appendChild(wrap);
+    function renderEducation(){
+      eduLine.innerHTML = '';
+      DATA[LANG].EDUCATION.forEach((ed)=>{
+        const wrap = document.createElement('div');
+        wrap.className = "relative flex flex-col items-center";
+        wrap.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md relative z-10"></div>
+          <div class="mt-6 px-5 py-3 bg-white rounded-xl shadow-md border w-72 text-center hover:shadow-lg transition">
+            <div class="text-sm text-brand-700 font-semibold">
+              <i data-lucide="school" class="w-3.5 h-3.5 inline mr-1"></i>${ed.period}
+            </div>
+            <div class="font-bold text-base mt-1">${ed.degree}</div>
+            <div class="text-sm text-base-600 mt-1">${ed.school} • ${ed.location}</div>
+          </div>`;
+        eduLine.appendChild(wrap);
+      });
+      lucide.createIcons();
+    }
+
+    // ----- Texte statique (nav, titres, placeholders) -----
+    function renderStaticText(){
+      const ui = UI[LANG];
+      // nav
+      document.getElementById('nav-about').textContent   = ui.nav.about;
+      document.getElementById('nav-projects').textContent= ui.nav.projects;
+      document.getElementById('nav-exp').textContent     = ui.nav.exp;
+      document.getElementById('nav-edu').textContent     = ui.nav.edu;
+      document.getElementById('nav-contact').textContent = ui.nav.contact;
+      // hero
+      document.getElementById('hero-role').textContent    = ui.hero.role;
+      document.getElementById('hero-creative').textContent= ui.hero.creative;
+      document.getElementById('hero-summary').textContent = ui.hero.summary;
+      document.getElementById('hero-location').textContent= ui.hero.location;
+      document.getElementById('hero-pill-1').textContent  = ui.hero.pill1;
+      document.getElementById('hero-pill-2').textContent  = ui.hero.pill2;
+      document.getElementById('btn-view-projects').textContent = ui.hero.viewProjects;
+      document.getElementById('btn-download-cv').textContent   = ui.hero.downloadCV;
+      // skills
+      document.getElementById('skills-title').textContent   = ui.skills.title;
+      document.getElementById('skills-subtitle').textContent= ui.skills.subtitle;
+      // projects
+      document.getElementById('projects-heading').textContent = ui.projects.heading;
+      document.getElementById('projects-subtitle').textContent= ui.projects.subtitle;
+      document.getElementById('search').placeholder = ui.projects.searchPH;
+      setModalText();
+      // exp / edu / contact
+      document.getElementById('exp-heading').textContent = ui.exp.heading;
+      document.getElementById('edu-heading').textContent = ui.edu.heading;
+      document.getElementById('contact-heading').textContent = ui.contact.heading;
+      document.getElementById('contact-sub').textContent     = ui.contact.sub;
+      // bouton langue
+      const langBtn = document.getElementById('lang-toggle');
+      langBtn.textContent = ui.langBtn;
+      langBtn.setAttribute('aria-label', ui.langBtn === 'EN' ? 'Switch to English' : 'Basculer en français');
+      // re-icônes
+      lucide.createIcons();
+    }
+
+    // ----- Rendu global -----
+    function renderAll(){
+      renderStaticText();
+      renderRadar();
+      renderTags();
+      renderProjects();
+      renderExperience();
+      renderEducation();
+    }
+
+    // Init
+    renderAll();
+
+    // Toggle langue
+    document.getElementById('lang-toggle').addEventListener('click', ()=>{
+      LANG = (LANG === 'fr' ? 'en' : 'fr');
+      // réinitialiser tag actif pour qu'il existe dans la langue courante
+      activeTag = UI[LANG].projects.allTag;
+      renderAll();
     });
-    lucide.createIcons();
   </script>
 </body>
 </html>

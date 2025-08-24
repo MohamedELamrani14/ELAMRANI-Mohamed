@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Portfolio – EL AMRANI Mohamed</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* Palette calme & pro : teal (brand) + indigo (accent) */
+            brand: {
+              50:"#ecfeff",100:"#cffafe",200:"#a5f3fc",300:"#67e8f9",
+              400:"#22d3ee",500:"#06b6d4",600:"#0891b2",700:"#0e7490",800:"#155e75",900:"#164e63"
+            },
+            accent: {
+              50:"#eef2ff",100:"#e0e7ff",200:"#c7d2fe",300:"#a5b4fc",
+              400:"#818cf8",500:"#6366f1",600:"#5458e9",700:"#4646c8",800:"#3735a3",900:"#2b2a85"
+            },
+            base: {
+              50:"#f8fafc",100:"#f1f5f9",200:"#e2e8f0",300:"#cbd5e1",
+              400:"#94a3b8",500:"#64748b",600:"#475569",700:"#334155",800:"#1e293b",900:"#0f172a"
+            }
+          },
+          borderRadius: { '2xl': '1.25rem' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icônes -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* styles utilitaires */
+    .glass { background: rgba(255,255,255,.8); backdrop-filter: blur(10px); }
+    .card { border:1px solid #e2e8f0; border-radius:1rem; background:#fff }
+    .btn { border:1px solid #e2e8f0; border-radius:0.75rem; padding:0.55rem 0.9rem; transition: all .15s ease; }
+    .btn:hover { background:#eef2ff }
+    .btn-primary { background:#0891b2; color:#fff; border-color:#0891b2 }
+    .btn-primary:hover { background:#0e7490; border-color:#0e7490 }
+    .btn-secondary { background:#fff; color:#1e293b; }
+    .chip { border:1px solid #c7d2fe; background:#eef2ff; color:#2b2a85; border-radius:999px; padding:.25rem .6rem; font-size:.75rem }
+    .hidden-modal { display:none }
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; padding:1rem; z-index:50}
+    .modal { background:#fff; border-radius:1rem; border:1px solid #e2e8f0; box-shadow:0 20px 60px rgba(0,0,0,.2); max-width:44rem; width:100% }
+  </style>
+</head>
+
+<!-- Fond dégradé doux -->
+<body class="min-h-screen bg-gradient-to-b from-base-50 via-brand-50 to-accent-50 text-base-800">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 glass border-b border-base-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="sparkles" class="w-5 h-5 text-brand-600"></i>
+        <span class="font-semibold">EL AMRANI Mohamed</span>
+        <span class="text-xs ml-2 px-2 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200">Portfolio</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-4 text-sm">
+        <a href="#apropos" class="hover:text-brand-700">À propos</a>
+        <a href="#projets" class="hover:text-brand-700">Projets</a>
+        <a href="#experience" class="hover:text-brand-700">Expérience</a>
+        <a href="#formation" class="hover:text-brand-700">Formation</a>
+        <a href="#contact" class="hover:text-brand-700">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/MohamedELamrani14" target="_blank" class="btn btn-secondary" aria-label="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 pt-12 pb-10" id="apropos">
+    <div class="grid md:grid-cols-5 gap-6 items-center">
+      <div class="md:col-span-3">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+          Data Scientist <span class="text-brand-700">créatif</span>
+        </h1>
+        <p class="mt-4 text-base-600 leading-relaxed">
+          Data Scientist passionné par l’exploration, le traitement et la manipulation des données.
+          IA (ML/DL), optimisation de modèles, LLMs, vision et NLP.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <span class="px-3 py-1 rounded-full bg-white/70 border border-base-200 inline-flex items-center gap-1 text-sm">
+            <i data-lucide="map-pin" class="w-4 h-4"></i> Paris, France
+          </span>
+          <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-800 border border-brand-200 text-sm">LLM • Vision • NLP • Optimisation</span>
+          <span class="px-3 py-1 rounded-full bg-accent-50 text-accent-800 border border-accent-200 text-sm">Open-source friendly</span>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projets" class="btn btn-primary inline-flex items-center">
+            <i data-lucide="filter" class="w-4 h-4 mr-2"></i> Voir les projets
+          </a>
+          <a href="public/cv.pdf" download class="btn btn-secondary inline-flex items-center">
+            <i data-lucide="download" class="w-4 h-4 mr-2"></i> Télécharger le CV
+          </a>
+          <a href="https://www.linkedin.com/in/m-elamrani/" target="_blank" class="btn btn-secondary inline-flex items-center">
+            <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Radar compétences -->
+      <div class="md:col-span-2">
+        <div class="card overflow-hidden">
+          <div class="p-5 border-b">
+            <div class="font-semibold flex items-center gap-2">
+              <i data-lucide="brain" class="w-5 h-5 text-brand-700"></i> Compétences (aperçu)
+            </div>
+            <div class="text-sm text-base-500">Force relative (1–10)</div>
+          </div>
+          <div class="p-5 h-64">
+            <canvas id="radar"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projets (UNE CARTE PAR LIGNE) -->
+  <section class="max-w-6xl mx-auto px-4 pb-12" id="projets">
+    <div class="flex items-end justify-between gap-4 mb-4">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">Projets sélectionnés</h2>
+        <p class="text-base-600">Cliquez sur une carte pour voir les détails.</p>
+      </div>
+      <div class="w-full md:w-96">
+        <input id="search" placeholder="Rechercher…" class="w-full px-3 py-2 rounded-xl border bg-white"/>
+      </div>
+    </div>
+
+    <div id="tag-bar" class="flex flex-wrap gap-2 mb-6"></div>
+
+    <!-- cartes en colonne (une par ligne) -->
+    <div id="projects-col" class="flex flex-col gap-5"></div>
+  </section>
+
+  <!-- Modale projets -->
+  <div id="modal" class="hidden-modal">
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal">
+        <div class="p-5 border-b flex items-center justify-between">
+          <h3 id="modal-title" class="text-xl font-semibold pr-6"></h3>
+          <button id="modal-close" class="btn text-sm">Fermer</button>
+        </div>
+        <div class="p-5">
+          <ul id="modal-list" class="list-disc pl-5 space-y-2 text-sm text-base-800"></ul>
+          <div id="modal-tags" class="mt-4 flex flex-wrap gap-2"></div>
+        </div>
+        <div class="p-4 border-t flex items-center justify-between">
+          <span class="text-xs text-base-500">← / → pour naviguer • Esc pour fermer</span>
+          <div class="flex gap-2">
+            <button id="modal-prev" class="btn text-sm">← Préc.</button>
+            <button id="modal-next" class="btn text-sm">Suiv. →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expérience -->
+  <section class="max-w-6xl mx-auto px-4 pb-12" id="experience">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">Expérience</h2>
+    <div class="relative pl-6">
+      <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-500/70 to-transparent rounded-full"></div>
+      <div class="space-y-6" id="exp-list"></div>
+    </div>
+  </section>
+
+  <!-- Formation (timeline) -->
+  <section class="max-w-6xl mx-auto px-4 pb-12" id="formation">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">Formation — Parcours académique</h2>
+    <div class="relative w-full overflow-x-auto pb-10">
+      <div class="flex items-start space-x-12 relative min-w-[720px]">
+        <div class="absolute top-5 left-0 right-0 h-1 bg-gradient-to-r from-brand-300 via-brand-500 to-accent-400 rounded-full"></div>
+        <div id="edu-line" class="contents"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="max-w-6xl mx-auto px-4 pb-20" id="contact">
+    <div class="card">
+      <div class="p-5 border-b">
+        <div class="text-xl font-semibold">Entrons en contact</div>
+        <div class="text-sm text-base-600">
+          Ouvert à un CDI / une thèse CIFRE et aux collaborations sur des projets IA / Data.
+        </div>
+      </div>
+      <div class="p-5 flex flex-wrap items-center gap-3">
+        <a href="mailto:elamrani.mohamed.0011@gmail.com" class="btn btn-primary inline-flex items-center">
+          <i data-lucide="mail" class="w-4 h-4 mr-2"></i> elamrani.mohamed.0011@gmail.com
+        </a>
+        <a href="https://github.com/MohamedELamrani14" target="_blank" class="btn btn-secondary inline-flex items-center">
+          <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/m-elamrani/" target="_blank" class="btn btn-secondary inline-flex items-center">
+          <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> LinkedIn
+        </a>
+      </div>
+      <div class="p-4 text-xs text-base-500">© <span id="year"></span> EL AMRANI Mohamed.</div>
+    </div>
+  </section>
+
+  <!-- ======= Données & logique ======= -->
+  <script>
+    // Données
+    const EXPERIENCE = [
+      { title:"Data Scientist (Stage)", company:"LIPN – LaMSN", location:"Paris, France", period:"Avril 2025 – Septembre 2025",
+        logo:"public/logos/lipn.png",
+        bullets:["Compression de CNN 3D pour imagerie médicale (nnU-Net).","Décomposition de Tucker pour réduire paramètres & latence.","Éval. sur Dice score, latence et mémoire; déploiement Docker."],
+        stack:["Python","PyTorch","nnU-Net","Tensor Decomposition","Linux","Docker"]},
+      { title:"Data Scientist (Stage)", company:"CodySoft", location:"Paris, France", period:"Juin 2024 – Septembre 2024",
+        logo:"public/logos/codysoft.png",
+        bullets:["LLM Q/R & résumé automatique de rapports académiques.","Collecte, nettoyage, annotation de corpus et comparaison de modèles."],
+        stack:["Python","LLM","RAG","Fine-tuning"]},
+      { title:"Data Scientist (Stage)", company:"Mondiale Solution Services (M2S)", location:"Casablanca, Maroc", period:"Juillet 2023 – Octobre 2023",
+        logo:"public/logos/m2s.png",
+        bullets:["Détection de dommages véhicules (vision).","Préparation de données, EDA, entraînement & évaluation."],
+        stack:["Python","YOLO","Roboflow"]},
+    ];
+
+    const EDUCATION = [
+      { school:"USPN", degree:"Master2 Exploration Informatique des Données et Décisionnel (EID2)", period:"2024 – 2025", location:"Paris, France" },
+      { school:"FSDM", degree:"Master Web Intelligence et Science des Données (WISD)", period:"2023 – 2025", location:"Fès, Maroc" },
+      { school:"FPT", degree:"Licence Sciences Mathématiques Informatique (SMI) Prc : Génie Informatique", period:"2022 – 2023", location:"Taza, Maroc" },
+    ];
+
+    const PROJECTS = [
+      
+      { title:"Développement d'un Modèle de Génération de Légendes pour Images avec Encodeur VIT et Décodeur LLM",
+        tags:["Vision","NLP","VIT","GPT-2","LLM"],
+        bullets:[
+          "Conception et implémentation d'un modèle avancé pour la description automatique d'images",
+          "Combinaison d’un encodeur Vision Transformer (VIT) et d’un décodeur de Modèle de Langage (GPT-2)",
+          "Visualisation et évaluation du modèle"
+        ]},
+      { title:"Détection de textes arabes générés par les LLMs à l’aide du modèle AraBERT",
+        tags:["NLP","BERT","Arabe","LLM"],
+        bullets:[
+          "Collection, analyse et prétraitement des données brutes",
+          "Visualisation et application de l’embedding via la version arabe de BERT",
+          "Évaluation de la performance du modèle"
+        ]},
+      { title:"Segmentation d'instance des joueurs par YOLOv5 avec le Framework Roboflow",
+        tags:["Vision","YOLOv5","Roboflow","Sport"],
+        bullets:[
+          "Développement et entraînement d'un modèle YOLOv5 pour la segmentation d’instance dans des vidéos de matchs de football",
+          "Utilisation de Roboflow pour prétraiter les données et optimiser les performances"
+        ]},
+      { title:"Construire et développer un nouvel Algorithme d’optimisation des paramètres du réseau neuronal",
+        tags:["Recherche","Optimisation","Deep Learning"],
+        bullets:[
+          "Projet de recherche autour de l’optimiseur Horse Herd",
+          "Étude et adaptation de l’optimiseur pour l’optimisation des poids des modèles neuronaux",
+          "Mise en place d’une stratégie de recherche des hyper-paramètres avec Horse Herd"
+        ]},
+        { title:"Création d’une Carte Interactive de Paris avec QGIS et Données OpenStreetMap",
+        tags:["Géodata","QGIS","OpenStreetMap","Carto"],
+        bullets:[
+          "Extraction, nettoyage et préparation des données (écoles, hôpitaux, cafés) avec QuickOSM",
+          "Visualisation et stylisation des données dans QGIS",
+          "Export d’une carte web interactive avec le plugin qgis2web"
+        ]},
+    ];
+
+    // Icônes
+    lucide.createIcons();
+
+    // Année
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== Radar : libellés mieux placés + tooltip niveau au survol =====
+  const radarCanvas = document.getElementById('radar');
+  radarCanvas.style.cursor = 'crosshair'; // curseur "précision" sur le radar
+
+  const RADAR_LABELS = [
+    "ML",
+    "DL",
+    "NLP",
+    "Vision",
+    "Data\nEng.", // libellé sur 2 lignes -> meilleur placement
+    "Viz"
+  ];
+
+  const radarChart = new Chart(radarCanvas, {
+    type: 'radar',
+    data: {
+      labels: RADAR_LABELS,
+      datasets: [{
+        label: "Niveau",
+        data: [9, 8, 8, 7, 6, 7],
+        fill: true,
+        backgroundColor: "rgba(6,182,212,0.15)", // brand-500 transparent
+        borderColor: "#06b6d4",
+        borderWidth: 2,
+        pointBackgroundColor: "#06b6d4",
+        pointBorderColor: "#06b6d4",
+        pointHoverBackgroundColor: "#0e7490",
+        pointHoverBorderColor: "#0e7490",
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        pointHitRadius: 18 // zone de clic/hover élargie
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 10, right: 12, bottom: 10, left: 12 } },
+      interaction: {
+        mode: 'nearest',
+        intersect: false // affiche le tooltip même si on n'est pas pile sur un point
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            // Affiche "Niveau : X/10"
+            label: (ctx) => `Niveau : ${ctx.parsed.r}/10`,
+            title: (items) => items[0]?.label?.replace('\n', ' ') || ''
+          }
+        }
+      },
+      scales: {
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 10,
+          ticks: { stepSize: 2, showLabelBackdrop: false },
+          grid: { color: "rgba(2,132,199,0.15)" },
+          angleLines: { color: "rgba(2,132,199,0.20)" },
+          pointLabels: {
+            display: true,
+            padding: 18,            // espace autour des libellés -> meilleur placement
+            // Optionnel : uniformiser la casse / abréger si besoin
+            callback: (label) => label
+          }
+        }
+      }
+    }
+  });
+
+    // -------- Projets (colonne + filtre + modale) --------
+    const search = document.getElementById('search');
+    const col = document.getElementById('projects-col');
+    const tagBar = document.getElementById('tag-bar');
+    let activeTag = "Tous";
+    let openIndex = null;
+
+    const allTags = Array.from(new Set(["Tous", ...PROJECTS.flatMap(p=>p.tags)]));
+
+    function renderTags(){
+      tagBar.innerHTML = '';
+      allTags.forEach(t=>{
+        const b = document.createElement('button');
+        b.className = `px-3 py-1.5 rounded-full border text-sm ${activeTag===t?'bg-brand-600 text-white border-brand-600':'bg-white border-base-200 hover:bg-base-100'}`;
+        b.textContent = t;
+        b.onclick = ()=>{ activeTag=t; renderProjects(); renderTags(); };
+        tagBar.appendChild(b);
+      });
+    }
+
+    function renderProjects(){
+      const q = (search.value||'').toLowerCase();
+      const list = PROJECTS.filter(p=>{
+        const hay = (p.title+' '+p.tags.join(' ')+' '+p.bullets.join(' ')).toLowerCase();
+        const okText = hay.includes(q);
+        const okTag = activeTag==='Tous' || p.tags.includes(activeTag);
+        return okText && okTag;
+      });
+
+      col.innerHTML = '';
+      list.forEach((p, i)=>{
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = "text-left w-full group overflow-hidden card hover:shadow-xl transition hover:-translate-y-0.5";
+        btn.innerHTML = `
+          <div class="p-5 border-b">
+            <div class="text-lg font-semibold leading-tight">${p.title}</div>
+          </div>
+          <div class="p-5">
+            ${(p.bullets.map(b=>`<li class="list-disc pl-5 text-sm text-base-700">${b}</li>`).join(''))}
+          </div>
+          <div class="px-5 pb-5 flex flex-wrap gap-2">
+            ${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}
+          </div>`;
+        btn.onclick = ()=>openModal(i, list);
+        col.appendChild(btn);
+      });
+    }
+
+    // Modale
+    const modal = document.getElementById('modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalTitle = document.getElementById('modal-title');
+    const modalList = document.getElementById('modal-list');
+    const modalTags = document.getElementById('modal-tags');
+    const btnPrev = document.getElementById('modal-prev');
+    const btnNext = document.getElementById('modal-next');
+    const btnClose = document.getElementById('modal-close');
+
+    let currentList = [];
+
+    function openModal(i, list){ currentList=list; openIndex=i; setModalContent(); modal.classList.remove('hidden-modal'); }
+    function closeModal(){ modal.classList.add('hidden-modal'); openIndex=null; }
+    function setModalContent(){
+      const p = currentList[openIndex]; if(!p) return;
+      modalTitle.textContent = p.title;
+      modalList.innerHTML = p.bullets.map(b=>`<li>${b}</li>`).join('');
+      modalTags.innerHTML = p.tags.map(t=>`<span class="chip">${t}</span>`).join('');
+    }
+    btnPrev.onclick = ()=>{ openIndex = (openIndex - 1 + currentList.length) % currentList.length; setModalContent(); };
+    btnNext.onclick = ()=>{ openIndex = (openIndex + 1) % currentList.length; setModalContent(); };
+    btnClose.onclick = closeModal;
+    modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeModal(); };
+    document.addEventListener('keydown', (e)=>{
+      if(openIndex===null) return;
+      if(e.key==='Escape') closeModal();
+      if(e.key==='ArrowLeft') btnPrev.click();
+      if(e.key==='ArrowRight') btnNext.click();
+    });
+
+    search.addEventListener('input', renderProjects);
+    renderTags(); renderProjects();
+
+    // -------- Expérience --------
+    const expList = document.getElementById('exp-list');
+    EXPERIENCE.forEach(e=>{
+      const card = document.createElement('div');
+      card.className = "card p-5";
+      card.innerHTML = `
+        <div class="flex items-start gap-4">
+          ${e.logo?`<img src="${e.logo}" alt="${e.company} logo" class="w-12 h-12 object-contain rounded-md border p-1">`:''}
+          <div class="flex-1">
+            <div class="flex flex-wrap items-center gap-2 text-sm mb-1">
+              <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
+                <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>${e.period}
+              </span>
+              <span class="px-2.5 py-1 rounded-full border bg-white inline-flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>${e.location}
+              </span>
+            </div>
+            <div class="text-xl font-semibold">${e.title} — ${e.company}</div>
+            <div class="text-sm text-base-600 mt-0.5">Stack : ${e.stack.join(" • ")}</div>
+            <ul class="list-disc pl-5 mt-3 space-y-1 text-sm">
+              ${e.bullets.map(b=>`<li>${b}</li>`).join('')}
+            </ul>
+          </div>
+        </div>`;
+      expList.appendChild(card);
+    });
+    lucide.createIcons();
+
+    // -------- Formation timeline --------
+    const eduLine = document.getElementById('edu-line');
+    EDUCATION.forEach((ed)=>{
+      const wrap = document.createElement('div');
+      wrap.className = "relative flex flex-col items-center";
+      wrap.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-brand-600 border-4 border-white shadow-md relative z-10"></div>
+        <div class="mt-6 px-5 py-3 bg-white rounded-xl shadow-md border w-72 text-center hover:shadow-lg transition">
+          <div class="text-sm text-brand-700 font-semibold">
+            <i data-lucide="school" class="w-3.5 h-3.5 inline mr-1"></i>${ed.period}
+          </div>
+          <div class="font-bold text-base mt-1">${ed.degree}</div>
+          <div class="text-sm text-base-600 mt-1">${ed.school} • ${ed.location}</div>
+        </div>`;
+      eduLine.appendChild(wrap);
+    });
+    lucide.createIcons();
+  </script>
+</body>
+</html>

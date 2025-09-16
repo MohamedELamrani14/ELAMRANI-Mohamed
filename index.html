@@ -104,7 +104,8 @@
           <a href="#projets" class="btn btn-primary inline-flex items-center">
             <i data-lucide="filter" class="w-4 h-4 mr-2"></i> <span id="btn-view-projects">Voir les projets</span>
           </a>
-          <a href="/public/cv.pdf" download class="btn btn-secondary inline-flex items-center">
+          <!-- Lien CV avec ID pour changer dynamiquement selon la langue -->
+          <a id="btn-download-cv-link" href="/public/cv.pdf" download class="btn btn-secondary inline-flex items-center">
             <i data-lucide="download" class="w-4 h-4 mr-2"></i> <span id="btn-download-cv">Télécharger le CV</span>
           </a>
           <a href="https://www.linkedin.com/in/m-elamrani/" target="_blank" class="btn btn-secondary inline-flex items-center">
@@ -599,6 +600,11 @@
       document.getElementById('hero-pill-2').textContent  = ui.hero.pill2;
       document.getElementById('btn-view-projects').textContent = ui.hero.viewProjects;
       document.getElementById('btn-download-cv').textContent   = ui.hero.downloadCV;
+
+      // >>> Lien CV selon la langue (FR: cv.pdf, EN: cven.pdf)
+      const cvLink = document.getElementById('btn-download-cv-link');
+      cvLink.setAttribute('href', LANG === 'fr' ? '/public/cv.pdf' : '/public/cven.pdf');
+
       // skills
       document.getElementById('skills-title').textContent   = ui.skills.title;
       document.getElementById('skills-subtitle').textContent= ui.skills.subtitle;
